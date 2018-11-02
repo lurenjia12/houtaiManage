@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="e-commonsearch-table" v-show="isshow">
+    <!--搜索框-->
+    <div class="e-commonsearch-table" v-show="isshow"  >
       <form>
-
           <div class="e-row">
             <div class="e-form-group">
               <label  class="e-control-label">Id</label>
@@ -100,9 +100,10 @@
       </form>
     </div>
 
+    <!--功能行-->
   <div class="ftableListsHeader">
     <div class="ftableListsHeaderLeft">
-      <a href="http://localhost:8080/#/om" class=" HL frefresh">
+      <a href="hhtp://localhost:8080/#/qm" class=" HL frefresh">
         <i class="iconfont icon-f14" title="刷新"></i>
       </a>
       <span class="HL fedit">
@@ -113,9 +114,17 @@
               <i class="iconfont icon-shanchu"></i>
               删除
           </span>
+      <span class="HL fdelete">
+              <i class="iconfont icon-shanchu"></i>
+              新增
+      </span>
+      <span class="HL fdelete">
+              <i class="iconfont icon-shanchu"></i>
+              更多
+      </span>
     </div>
     <div class="ftableListsHeaderRight">
-      <input type="text" placeholder="搜索" class="frsearch" @click="fshowAndHide">
+      <input type="text" placeholder="搜索" class="frsearch">
       <div class="tableListsChoise">
         <i class="iconfont icon-qiehuan" title="切换"></i>
         <!--
@@ -123,7 +132,7 @@
 
         <div class="TableCheckBox" @click.stop="fshowAndHide">
           <i class="iconfont icon-jiugongge" title="列"><span></span></i>
-          <ul class="checkLists" v-show="isshow">
+          <ul class="checkLists" v-show="isshow" style="z-index: 2">
             <li><input type="checkbox" />订单号</li>
             <li><input type="checkbox" />产品ID</li>
             <li><input type="checkbox" />二维码ID</li>
@@ -157,12 +166,13 @@
           </ul>
         </div>
       </div>
-      <button style="width: 30px">
+      <button style="width:30px" >
         <i class="iconfont icon-sousuo" title="普通搜索" @click.stop.prevent="fshowAndHide"></i>
       </button>
     </div>
+
   </div>
-  </div>
+</div>
 </template>
 
 <script>
@@ -171,9 +181,11 @@
       data(){
           return{
             isshow:false,
+            //
 
           }
       },
+      props:['erweimadata'],
       methods:{
           //显示隐藏
         fshowAndHide(){
@@ -184,5 +196,85 @@
 </script>
 
 <style scoped>
+.HL{
+  font-size: 13px;
+}
+.iconfont{
+  font-size: 13px;
+}
+/*!* 公共搜索——表格 *!*/
+/*.e-commonsearch-table {*/
+  /*margin-bottom: 10px;*/
+  /*margin-top: 20px;*/
+/*}*/
 
+/*.e-form-group {*/
+  /*float: left;*/
+  /*margin-bottom: 15px;*/
+  /*padding-left: 15px;*/
+  /*padding-right: 15px;*/
+  /*box-sizing: border-box;*/
+  /*width: 33%;*/
+/*}*/
+
+/*fieldset {*/
+  /*padding: 0;*/
+  /*margin: 0;*/
+  /*border: 0;*/
+  /*min-width: 0;*/
+/*}*/
+
+/*.e-control-label {*/
+  /*width: 33%;*/
+  /*text-align: right;*/
+  /*padding-top: 7px;*/
+  /*float: left;*/
+/*}*/
+
+/*.e-col-xs-8 {*/
+  /*width: 67%;*/
+  /*float: left;*/
+  /*padding-left: 15px;*/
+  /*padding-right: 15px;*/
+  /*box-sizing: border-box;*/
+/*}*/
+/*.e-form-submit{*/
+  /*width: 100%;*/
+  /*padding-left: 15px;*/
+  /*padding-right: 15px;*/
+  /*box-sizing: border-box;*/
+  /*text-align: center;*/
+/*}*/
+/*.e-form-control {*/
+  /*width: 100%;*/
+  /*color: #555555;*/
+  /*border: 1px solid #d2d6de;*/
+  /*height: 30px;*/
+  /*padding: 0 12px;*/
+/*}*/
+
+/*.e-btn-submit {*/
+  /*padding: 6px 12px;*/
+  /*border-radius: 3px;*/
+  /*color: #fff;*/
+  /*background-color: #18bc9c;*/
+  /*border: 1px solid transparent;*/
+  /*cursor: pointer;*/
+  /*margin-right: 10px;*/
+/*}*/
+/*.e-btn-submit:hover{*/
+  /*background: #777;*/
+/*}*/
+/*.e-btn-default {*/
+  /*background-color: #f4f4f4;*/
+  /*color: #444;*/
+  /*border:1px solid #ddd;*/
+  /*padding: 6px 12px;*/
+  /*border-radius: 3px;*/
+  /*cursor: pointer;*/
+/*}*/
+/*.e-btn-default:hover{*/
+  /*border-color: #999;*/
+  /*background: #eee;*/
+/*}*/
 </style>

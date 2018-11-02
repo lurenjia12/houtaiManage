@@ -1,21 +1,21 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import orderManage from '@/pages/orderManage'
-// import shiyan from '@/pages/shiyan'
+import quickmark from '@/pages/quickMark'
 
 Vue.use(Router)
 
 export default new Router({
    routes: [
     {
-      path: '/',
+      path: '/om',
       name: 'orderManage',
       component: orderManage
     },
-  //   {
-  //     path: '/ss',
-  //     name: 'shiyan',
-  //     component: shiyan
-  //   }
+    {
+      path: '/qm',
+      name: 'quickmark',
+      component: quickmark
+    }
   ]
 })

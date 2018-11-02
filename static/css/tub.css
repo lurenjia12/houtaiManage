@@ -35,7 +35,7 @@ padding-right: 20px;
 color: #333333;
 font-size: 12px;
 margin-left: 10px;
-height: 52px;
+height: 68px;
 background-color: #e8edf0;
 line-height: 18px;
 text-indent: 10px;
@@ -285,4 +285,88 @@ tbody td{
 }
 .fstatu .icon-yuan{
   margin-right: 2px;
+}
+
+/* 公共搜索——表格 */
+.e-commonsearch-table {
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+.e-form-group {
+  float: left;
+  margin-bottom: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+  box-sizing: border-box;
+  width: 33%;
+}
+
+/*fieldset {*/
+  /*padding: 0;*/
+  /*margin: 0;*/
+  /*border: 0;*/
+  /*min-width: 0;*/
+/*}*/
+
+.e-control-label {
+  width: 33%;
+  text-align: right;
+  padding-top: 7px;
+  float: left;
+}
+
+.e-col-xs-8 {
+  width: 67%;
+  float: left;
+  padding-left: 15px;
+  padding-right: 15px;
+  box-sizing: border-box;
+}
+.e-form-submit{
+  width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+  box-sizing: border-box;
+  text-align: center;
+}
+.e-form-control {
+  width: 100%;
+  color: #555555;
+  border: 1px solid #d2d6de;
+  height: 30px;
+  padding: 0 12px;
+}
+
+.e-btn-submit {
+  padding: 6px 12px;
+  border-radius: 3px;
+  color: #fff;
+  background-color: #18bc9c;
+  border: 1px solid transparent;
+  cursor: pointer;
+  margin-right: 10px;
+}
+.e-btn-submit:hover{
+  background: #777;
+}
+.e-btn-default {
+  background-color: #f4f4f4;
+  color: #444;
+  border:1px solid #ddd;
+  padding: 6px 12px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.e-btn-default:hover{
+  border-color: #999;
+  background: #eee;
+}
+
+
+/*底部*/
+.showFooter{
+  width: 100%;
+  padding:15px;
+  font-size: 14px;
 }

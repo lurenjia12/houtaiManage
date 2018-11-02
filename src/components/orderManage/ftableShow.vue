@@ -6,7 +6,7 @@
     <tr>
       <th class="th_checkbox" style="width: 36px">
         <div class="th_inner th_one" >
-          <input type="checkbox" />
+          <input type="checkbox" @click="selectAll"/>
         </div>
       </th>
       <th class="th_checkbox">
@@ -75,7 +75,7 @@
     <tr v-for="(item,index) of  data" >
       <td class="th_checkbox" style="width: 36px">
         <div class="th_inner th_one" >
-          <input type="checkbox" />
+          <input type="checkbox" :checked="item.isCheck" />
         </div>
       </td>
       <td class="th_checkbox">
@@ -146,6 +146,9 @@
     </tbody>
 
   </table>
+    <div class="showFooter">
+      显示第 1 到第 2 条记录，总共 2 条记录
+    </div>
   <div class="overlay"  v-show="isshow">
     <div class="con">
       <h2 class="title">新增 | 修改</h2>
@@ -223,6 +226,24 @@
         this.setSlist(this.data);
       },
       methods:{
+        //全选反选
+        selectAll:function(event){
+          if(event.currentTarget.checked){
+            this.data.forEach((el,i)=>{
+              el.isCheck=true
+              // 数组里没有这一个id才push，防止重复push
+             // if(this.allselectData.indexOf(el.id) == '-1'){
+              //  this.allselectData.push(el.id);
+                //console.log(this.allselectData)
+             // }
+            });
+          }else { // 全不选选则清空绑定的数组
+            // this.allselectData = [];
+            this.data.forEach((el,i)=>{
+              el.isCheck=false
+            })
+          }
+        },
 
         //删除对象
         del:function (index) {

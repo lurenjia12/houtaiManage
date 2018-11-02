@@ -6,12 +6,12 @@
     <tr>
       <th class="th_checkbox" style="width: 36px">
         <div class="th_inner th_one" >
-          <input type="checkbox" />
+          <input type="checkbox" v-model="allchecked"  @click="selectAll"/>
         </div>
       </th>
       <th class="th_checkbox">
         <div class="th_inner">
-          订单号
+          ID
         </div>
       </th>
       <th class="th_checkbox">
@@ -21,22 +21,7 @@
       </th>
       <th class="th_checkbox">
         <div class="th_inner">
-          订单价格
-        </div>
-      </th>
-      <th class="th_checkbox">
-        <div class="th_inner">
-          真实价格
-        </div>
-      </th>
-      <th class="th_checkbox">
-        <div class="th_inner th_bg">
-          外部订单
-        </div>
-      </th>
-      <th class="th_checkbox">
-        <div class="th_inner th_bg">
-          自定义
+          产品名称
         </div>
       </th>
       <th class="th_checkbox">
@@ -45,8 +30,18 @@
         </div>
       </th>
       <th class="th_checkbox">
+        <div class="th_inner th_bg">
+          二维码图片
+        </div>
+      </th>
+      <th class="th_checkbox">
+        <div class="th_inner th_bg">
+          金额
+        </div>
+      </th>
+      <th class="th_checkbox">
         <div class="th_inner">
-          支付时间
+          支付URL
         </div>
       </th>
       <th class="th_checkbox">
@@ -64,25 +59,19 @@
           操作
         </div>
       </th>
-      <th class="th_checkbox">
-        <div class="th_inner">
-          操作
-        </div>
-      </th>
     </tr>
     </thead>
     <tbody>
-    <tr v-for="(item,index) of  data" >
+    <!--//<label for="xx">-->
+    <tr v-for="(item,index) of  erweimadata">
+
       <td class="th_checkbox" style="width: 36px">
         <div class="th_inner th_one" >
-          <input type="checkbox" />
+          <input type="checkbox"  :checked="item.isCheck"/>
+
         </div>
       </td>
-      <td class="th_checkbox">
-        <div class="th_inner">
-          {{item.orderNum}}
-        </div>
-      </td>
+
       <td class="th_checkbox">
         <div class="th_inner">
           {{item.id}}
@@ -90,32 +79,32 @@
       </td>
       <td class="th_checkbox">
         <div class="th_inner">
-          {{item.orderPrice}}
+          {{item.productID}}
         </div>
       </td>
       <td class="th_checkbox">
         <div class="th_inner">
-          {{item.realPrice}}
+          {{item.proName}}
         </div>
       </td>
       <td class="th_checkbox">
         <div class="th_inner th_bg">
-          {{item.outNum}}
-        </div>
-      </td>
-      <td class="th_checkbox">
-        <div class="th_inner th_bg">
-          {{item.zdy}}
-        </div>
-      </td>
-      <td class="th_checkbox">
-        <div class="th_inner">
           {{item.leixing}}
         </div>
       </td>
       <td class="th_checkbox">
+        <div class="th_inner th_bg">
+          <img :src="item.pic" width="30px">
+        </div>
+      </td>
+      <td class="th_checkbox">
         <div class="th_inner">
-          {{item.payTime}}
+          {{item.money}}
+        </div>
+      </td>
+      <td class="th_checkbox">
+        <div class="th_inner">
+          {{item.url}}
         </div>
       </td>
       <td class="th_checkbox">
@@ -125,27 +114,22 @@
       </td>
       <td class="th_checkbox">
         <div class="th_inner fstatu"  :title="item.statu">
-          <i class="iconfont icon-yuan"></i>
+          <i class="iconfont icon-yuan" style="color:green"></i>
           {{item.statu}}
         </div>
       </td>
-      <td class="th_checkbox">
-        <div class="th_inner">
-          <div class="operation1">
-            我已收款
-          </div>
-        </div>
-      </td>
+
       <td class="th_checkbox">
         <div class="th_inner">
           <i class="iconfont icon-edit" @click="fedit(index)"></i>
-          <i class="iconfont icon-shanchu" @click="del(index)"></i>
         </div>
       </td>
+      <!--</label>-->
     </tr>
     </tbody>
 
   </table>
+
   <div class="overlay"  v-show="isshow">
     <div class="con">
       <h2 class="title">新增 | 修改</h2>
@@ -207,12 +191,19 @@
 </template>
 
 <script>
-  import data from '../../data/data'
+  // import erweimadata from '../../data/quickMark'
     export default {
         name: "ftableShow",
+      props:['erweimadata'],
       data(){
           return{
-            data,
+            //控住选中的数据
+            allselectData:[],
+            //控制全选
+            allchecked:false,
+            // 数据
+            //erweimadata,
+            //控制显示隐藏
             isshow:false,
             selected:-1,
             selectedlist: {},
@@ -220,14 +211,14 @@
           }
       },
       created() {
-        this.setSlist(this.data);
+        this.setSlist(this.erweimadata);
       },
       methods:{
 
         //删除对象
         del:function (index) {
             if(window.confirm("你确定要删除吗"))
-          this.data.splice(index, 1)
+          this.erweimadata.splice(index, 1)
         },
         //改变显示或隐藏
         changeHide:function() {
@@ -260,12 +251,12 @@
             createTime:"",
             zdy:""
           };
-          this.isshow = true;
+          this.slist.push(selectedlist);
         },
         // 修改数据
         fedit:function(index) {
           this.selected = index;
-          this.selectedlist = this.data[index];
+          this.selectedlist = this.erweimadata[index];
           this.changeHide();
 
         },
@@ -273,6 +264,25 @@
         setSlist:function(arr) {
           this.slist = JSON.parse(JSON.stringify(arr));
         },
+        //全选反选
+        selectAll:function(event){
+          if(event.currentTarget.checked){
+            this.erweimadata.forEach((el,i)=>{
+              el.isCheck=true
+              // 数组里没有这一个id才push，防止重复push
+              if(this.allselectData.indexOf(el.id) == '-1'){
+                this.allselectData.push(el.id);
+                //console.log(this.allselectData)
+             }
+            });
+          }else { // 全不选选则清空绑定的数组
+            // this.allselectData = [];
+            this.erweimadata.forEach((el,i)=>{
+              el.isCheck=false
+            })
+          }
+        },
+
 
       },
     }

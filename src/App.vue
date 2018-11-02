@@ -5,11 +5,13 @@
 </template>
 
 <script>
+  import quickmark from './pages/quickMark'
   import  orderManage from './pages/orderManage'
 export default {
   name: 'App',
   components:{
     orderManage,
+    quickmark
   }
 }
 </script>
